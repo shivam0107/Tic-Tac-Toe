@@ -19,23 +19,25 @@ const winningPosition = [
 ];
 
 //create a function to initialize the game
-function initGmae() {
+function initGame() {
     currentPlayer = "X";
     gameGrid = ["", "", "", "", "", "", "", "", ""];
     //UI empty
     boxes.forEach((box, index) => {
         box.innerText = "";
         boxes[index].style.pointerEvents = "all";
-         boxes[index].classList.remove("win");
-            boxes[index].classList.remove("win");
-            boxes[index].classList.remove("win");
+        //  boxes[index].classList.remove("win");
+        //     boxes[index].classList.remove("win");
+        //     boxes[index].classList.remove("win");
+
+        box.classList = `box box${index + 1}`;
 
     });
     newGameBtn.classList.remove("active");
     gameInfo.innerText = `CurrentPlayer - ${currentPlayer}`;
 }
 
-initGmae();
+initGame();
 
 function swapTurn() {
     if (currentPlayer === "X") {
@@ -51,7 +53,7 @@ function swapTurn() {
 }
 
 function checkGameOver() {
-    let ans = "";
+    let answer = "";
 
     winningPosition.forEach((position) => {
         if ((gameGrid[position[0]] !== "" || gameGrid[position[1]] !== "" || gameGrid[position[2]] !== "")
@@ -95,6 +97,7 @@ function checkGameOver() {
             fillCount++;
     });
 
+    //board is filled,game is tie
     if (fillCount === 9) {
         gameInfo.innerText = "Game Tie!";
         newGameBtn.classList.add("active");
@@ -132,5 +135,5 @@ boxes.forEach((box, index) => {
 });
 
 
-newGameBtn.addEventListener("click", initGmae);
+newGameBtn.addEventListener("click", initGame);
 
